@@ -1,5 +1,4 @@
-*.xpi
-*pkg*
-src
-venv
-.idea
+*
+!PKGBUILD
+!.SRCINFO
+!.gitignore
