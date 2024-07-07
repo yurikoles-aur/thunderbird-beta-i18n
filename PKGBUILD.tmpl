@@ -9,25 +9,24 @@
 # Pull requests are welcome here:
 # https://github.com/yurikoles-aur/thunderbird-beta-i18n
 
-pkgbase=thunderbird-beta-i18n
-pkgver={{ pkgver }}
-pkgrel=1
-url='http://www.mozilla.com/'
-arch=('any')
-license=('MPL' 'GPL')
-
 pkgname=({% for lang_iso639 in languages.keys() %}
   'thunderbird-beta-i18n-{{ lang_iso639.lower() }}'{% end %}
 )
+pkgbase=thunderbird-beta-i18n
+pkgver={{ pkgver }}
+pkgrel=1
+pkgdesc="Language packs for Thunderbird Beta"
+arch=('any')
+url='http://www.mozilla.com/'
+license=('MPL-2.0' 'GPL-2.0-only' 'LGPL-2.1-only')
 _url=https://ftp.mozilla.org/pub/thunderbird/releases/$pkgver/linux-x86_64/xpi
 source=({% for lang_iso639 in languages.keys() %}
   "thunderbird-beta-i18n-$pkgver-{{ lang_iso639 }}.xpi::$_url/{{ lang_iso639 }}.xpi"{% end %}
 )
-sha256sums=({% for sha256sum in sha256sums %}
-  '{{ sha256sum }}'{% end %})
-
 # Don't extract anything
 noextract=(${source[@]%%::*})
+sha256sums=({% for sha256sum in sha256sums %}
+  '{{ sha256sum }}'{% end %})
 
 {% for lang_iso639, lang_name in languages.items() %}
 package_thunderbird-beta-i18n-{{ lang_iso639.lower() }}() {
