@@ -26,7 +26,8 @@ source=({% for lang_iso639 in languages.keys() %}
 # Don't extract anything
 noextract=(${source[@]%%::*})
 sha256sums=({% for sha256sum in sha256sums %}
-  '{{ sha256sum }}'{% end %})
+  '{{ sha256sum }}'{% end %}
+)
 
 {% for lang_iso639, lang_name in languages.items() %}
 package_thunderbird-beta-i18n-{{ lang_iso639.lower() }}() {
